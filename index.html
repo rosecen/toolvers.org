@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development Tools Navigator</title>
+    <link rel="canonical" href="https://webdevtools.example.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #007AFF;
+            --secondary: #5856D6;
+            --accent: #FF9500;
+            --success: #34C759;
+            --danger: #FF3B30;
+            --warning: #FFCC00;
+            --info: #5AC8FA;
+            --dark: #1C1C1E;
+            --light: #F2F2F7;
+            --gray-100: #F2F2F7;
+            --gray-200: #E5E5EA;
+            --gray-300: #D1D1D6;
+            --gray-400: #C7C7CC;
+            --gray-500: #AEAEB2;
+            --gray-600: #8E8E93;
+            --gray-700: #636366;
+            --gray-800: #48484A;
+            --gray-900: #3A3A3C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            color: var(--light);
+            background-color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0 120px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: -40px auto 60px;
+            z-index: 20;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .search-input {
+            background-color: var(--gray-900);
+            color: var(--light);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(0, 122, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-size: 1.2rem;
+        }
+
+        /* Category Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Category Cards */
+        .category-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark-mode .category-card {
+            background-color: var(--gray-900);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-header {
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .header-keyword {
+            background: linear-gradient(135deg, #007AFF, #5E5CE6);
+        }
+
+        .header-essential {
+            background: linear-gradient(135deg, #34C759, #30B0C7);
+        }
+
+        .header-competitor {
+            background: linear-gradient(135deg, #AF52DE, #FF2D55);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .tool-list {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .tool-item:hover {
+            background-color: var(--gray-100);
+            transform: translateX(5px);
+        }
+
+        .dark-mode .tool-item:hover {
+            background-color: var(--gray-800);
+        }
+
+        .tool-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray-100);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .tool-icon {
+            background-color: var(--gray-800);
+        }
+
+        .tool-item:hover .tool-icon {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tool-content {
+            flex: 1;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .dark-mode .tool-desc {
+            color: var(--gray-400);
+        }
+
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .template-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark-mode .template-card {
+            background-color: var(--gray-900);
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Template Images with CSS Patterns */
+        .template-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .template-image .icon {
+            position: relative;
+            z-index: 2;
+            font-size: 3.5rem;
+            color: white;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Cloudflare Blog Template Pattern */
+        .cf-blog {
+            background: linear-gradient(135deg, #F6B93B, #FA983A);
+        }
+
+        .cf-blog::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 5%, transparent 5.5%),
+                radial-gradient(circle at 75% 65%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 5%, transparent 5.5%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 8%, transparent 8.5%);
+        }
+
+        .cf-blog::after {
+            content: "";
+            position: absolute;
+            bottom: -60px;
+            right: -60px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Next.js Template Pattern */
+        .nextjs {
+            background: linear-gradient(135deg, #0070f3, #1E88E5);
+        }
+        
+        .nextjs::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+        }
+
+        /* SaaS Template Pattern */
+        .saas {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        }
+
+        .saas::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.1) 8%, transparent 8%),
+                radial-gradient(rgba(255, 255, 255, 0.1) 8%, transparent 8%);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+        }
+
+        /* Landing Page Template Pattern */
+        .landing {
+            background: linear-gradient(135deg, #00b894, #55efc4);
+        }
+
+        .landing::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+        }
+
+        /* Astro Template Pattern */
+        .astro {
+            background: linear-gradient(135deg, #FF3366, #FF6B6B);
+        }
+
+        .astro::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 40%, rgba(255,255,255,0.3), rgba(255,255,255,0) 60%),
+                radial-gradient(circle at 80% 10%, rgba(255,255,255,0.2), rgba(255,255,255,0) 40%),
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.2), rgba(255,255,255,0) 40%);
+        }
+
+        /* AI Web Template Pattern */
+        .ai-web {
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+        }
+
+        .ai-web::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 40.5%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 20%, transparent 20.5%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 30.5%);
+        }
+
+        /* Versatile Template Pattern */
+        .versatile {
+            background: linear-gradient(135deg, #ff9f43, #ff7979);
+        }
+
+        .versatile::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .template-content {
+            padding: 25px;
+        }
+
+        .template-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .template-desc {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .template-desc {
+            color: var(--gray-400);
+        }
+
+        .template-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: var(--gray-100);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-700);
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .dark-mode .template-tag {
+            background-color: var(--gray-800);
+            color: var(--gray-300);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .footer-links a {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gray-400);
+            transition: all 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .floating-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .back-to-top {
+            background-color: var(--accent);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Header -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Website Development Tools Navigator</h1>
+            <p>A comprehensive collection of essential tools for efficient website development, from keyword research to deployment</p>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for tools...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Featured Categories -->
+        <h2 class="section-title">Essential Categories</h2>
+        <div class="category-grid">
+            <!-- Keyword Research Category -->
+            <div class="category-card fade-in delay-100">
+                <div class="category-header header-keyword">
+                    <div class="category-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="category-title">Keyword Research</h3>
+                </div>
+                <div class="tool-list">
+                    <a href="https://www.searchsuggest.tips/?keyword=" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Google Suggest</div>
+                            <div class="tool-desc">Discover keyword suggestions from Google's autocomplete</div>
+                        </div>
+                    </a>
+                    <a href="https://www.toolify.ai/Best-AI-Tools-revenue" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Toolify Rankings</div>
+                            <div class="tool-desc">Browse top AI tools by revenue and popularity</div>
+                        </div>
+                    </a>
+                    <a href="https://theresanaiforthat.com/requests" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">AI Tool Requests</div>
+                            <div class="tool-desc">Explore user requests for AI tools to identify opportunities</div>
+                        </div>
+                    </a>
+                    <a href="https://ahrefs.com/keyword-difficulty" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Keyword Difficulty</div>
+                            <div class="tool-desc">Evaluate SEO difficulty for target keywords</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Essential Tools Category -->
+            <div class="category-card fade-in delay-200">
+                <div class="category-header header-essential">
+                    <div class="category-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="category-title">Essential Tools</h3>
+                </div>
+                <div class="tool-list">
+                    <a href="https://leandomainsearch.com/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Lean Domain Search</div>
+                            <div class="tool-desc">Find available domain names based on keywords</div>
+                        </div>
+                    </a>
+                    <a href="https://query.domains/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Query Domains</div>
+                            <div class="tool-desc">Advanced domain name search with filters</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">GitHub</div>
+                            <div class="tool-desc">Code hosting, version control & deployment</div>
+                        </div>
+                    </a>
+                    <a href="https://www.cloudflare.com/zh-cn/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Cloudflare</div>
+                            <div class="tool-desc">Web performance & security services</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Competitor Research Category -->
+            <div class="category-card fade-in delay-300">
+                <div class="category-header header-competitor">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="category-title">Competitor Research</h3>
+                </div>
+                <div class="tool-list">
+                    <a href="https://aitdk.com/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">AITdk</div>
+                            <div class="tool-desc">Analyze website traffic and keyword rankings</div>
+                        </div>
+                    </a>
+                    <a href="https://ahrefs.com/free-seo-tools" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Ahrefs Free Tools</div>
+                            <div class="tool-desc">Examine backlink profiles and site authority</div>
+                        </div>
+                    </a>
+                    <a href="https://www.semrush.com/projects/" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">SEMrush Projects</div>
+                            <div class="tool-desc">Track competitor keyword rankings and strategy</div>
+                        </div>
+                    </a>
+                    <a href="https://search.google.com/search-console" class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tool-content">
+                            <div class="tool-name">Google Search Console</div>
+                            <div class="tool-desc">Monitor website performance in search results</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Website Templates Section -->
+        <h2 class="section-title">Website Templates & Boilerplates</h2>
+        <div class="template-grid">
+            <!-- Template Cards with CSS Patterns -->
+            <a href="https://github.com/openRin/Rin" class="template-card fade-in delay-100">
+                <div class="template-image cf-blog">
+                    <div class="icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Dynamic Cloudflare Blog</h3>
+                    <p class="template-desc">Blog based on Cloudflare Pages + Workers + D1 + R2</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Cloudflare</span>
+                        <span class="template-tag">Blog</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/ixartz/Next-js-Boilerplate" class="template-card fade-in delay-200">
+                <div class="template-image nextjs">
+                    <div class="icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Next.js 15 Boilerplate</h3>
+                    <p class="template-desc">Next.js 15 with App Router and Page Router support</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Next.js</span>
+                        <span class="template-tag">React</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/ixartz/SaaS-Boilerplate" class="template-card fade-in delay-300">
+                <div class="template-image saas">
+                    <div class="icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">SaaS Boilerplate</h3>
+                    <p class="template-desc">Next.js + Tailwind CSS + Shadcn UI + TypeScript</p>
+                    <div class="template-tags">
+                        <span class="template-tag">SaaS</span>
+                        <span class="template-tag">Tailwind</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template" class="template-card fade-in delay-400">
+                <div class="template-image landing">
+                    <div class="icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">NextJS Landing Page</h3>
+                    <p class="template-desc">Free landing page template with NextJS</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Landing Page</span>
+                        <span class="template-tag">Next.js</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/ixartz/Astro-boilerplate" class="template-card fade-in delay-300">
+                <div class="template-image astro">
+                    <div class="icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Astro Boilerplate</h3>
+                    <p class="template-desc">Responsive blog and portfolio template with Astro</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Astro</span>
+                        <span class="template-tag">Portfolio</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/ai-aigc-studio/Viggle-AI-WebUI" class="template-card fade-in delay-500">
+                <div class="template-image ai-web">
+                    <div class="icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Viggle AI Web Client</h3>
+                    <p class="template-desc">Open source web client for Viggle AI</p>
+                    <div class="template-tags">
+                        <span class="template-tag">AI</span>
+                        <span class="template-tag">Web Client</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/weijunext/landing-page-boilerplate" class="template-card fade-in delay-400">
+                <div class="template-image versatile">
+                    <div class="icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Versatile Landing Page</h3>
+                    <p class="template-desc">Landing page boilerplate for various projects</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Landing Page</span>
+                        <span class="template-tag">Versatile</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/weijunext/new-blog" class="template-card fade-in delay-500">
+                <div class="template-image cf-blog">
+                    <div class="icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Weekly Blog Template</h3>
+                    <p class="template-desc">Modern blog template for publishing weekly content</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Blog</span>
+                        <span class="template-tag">Weekly</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/daimajia/huntscreens" class="template-card fade-in delay-300">
+                <div class="template-image landing">
+                    <div class="icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">HuntScreens</h3>
+                    <p class="template-desc">Take screenshots of new projects on Producthunt and YC</p>
+                    <div class="template-tags">
+                        <span class="template-tag">Automation</span>
+                        <span class="template-tag">Producthunt</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">About Us</h3>
+                    <p>We curate and organize the best tools for web developers to streamline your workflow and boost productivity.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#">Tools Directory</a>
+                        <a href="#">Templates</a>
+                        <a href="#">Resources</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:info@webdevtools.com">info@webdevtools.com</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Website Development Tools Navigator. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button id="backToTopBtn" class="floating-button back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="themeToggleBtn" class="floating-button">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const toolItems = document.querySelectorAll('.tool-item');
+        const templateCards = document.querySelectorAll('.template-card');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            // Search tools
+            toolItems.forEach(item => {
+                const name = item.querySelector('.tool-name').textContent.toLowerCase();
+                const desc = item.querySelector('.tool-desc').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || desc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Search templates
+            templateCards.forEach(card => {
+                const title = card.querySelector('.template-title').textContent.toLowerCase();
+                const desc = card.querySelector('.template-desc').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.template-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                if (title.includes(searchTerm) || desc.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Dark mode toggle
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        let isDarkMode = false;
+        
+        // Check for system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            enableDarkMode();
+        }
+        
+        themeToggleBtn.addEventListener('click', function() {
+            if (isDarkMode) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+        
+        function enableDarkMode() {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            isDarkMode = true;
+        }
+        
+        function disableDarkMode() {
+            document.body.classList.remove('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            isDarkMode = false;
+        }
+    </script>
+</body>
+</html>
